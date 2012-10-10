@@ -1,0 +1,30 @@
+BBC One London:
+  :pid: bbc_one_london_pid
+  :kind: programme
+  
+Video on demand:
+  :pid: video_on_demand_pid
+  :kind: programme
+  :duration: 5700
+  :availability_class: ondemand
+  
+ident:
+  :pid: ident_pid
+  :kind: ident
+
+Olympics:
+  :pid: the_olympics
+  :kind: programme
+  :media:
+    -
+     :bitrate: 1500
+     :encoding: h264
+     :type: video/mp4
+     :width: 832
+     :connections:
+       -
+         :href: http://www.bbc.co.uk/playlists/olympics.f4m
+         :protocol: http
+         :supplier: akamai_hds
+         :transferFormat: hds
+  

@@ -1,11 +1,14 @@
+require 'ostruct'
+require 'media_playlist'
 require 'media_playlist_xml_serializer'
+require 'active_support/core_ext'
 
-describe MediaPlaylistXMLSerializer do
+describe BBC::MediaPlaylist::XMLSerializer do
   
   describe "serializing a playlist with media items" do
     
-    programme_one = { kind: 'ident', pid: 'ident_pid' }
-    programme_two = { kind: 'programme', pid: 'video_on_demand_pid', duration: 'duration_in_seconds', availability_class: 'ondemand' }
+    programme_one = OpenStruct.new({ kind: 'ident', pid: 'ident_pid' })
+    programme_two = OpenStruct.new({ kind: 'programme', pid: 'video_on_demand_pid', duration: 'duration_in_seconds', availability_class: 'ondemand' })
     
     xml_representation = Nokogiri::XML(%|<?xml version="1.0" encoding="UTF-8"?>
     <playlist xmlns="http://bbc.co.uk/2008/emp/playlist" revision="1">
@@ -18,7 +21,11 @@ describe MediaPlaylistXMLSerializer do
     </playlist>|).to_xml
   
     it 'serializes a playlist as a xml' do
-      serialized_playlist = MediaPlaylistXMLSerializer.new.serialize(MediaPlaylist.new([programme_one, programme_two]))
+      media_playlist = BBC::MediaPlaylist.new do |playlist|
+        playlist << programme_one
+        playlist << programme_two
+      end
+      serialized_playlist = BBC::MediaPlaylist::XMLSerializer.new.serialize(media_playlist)
       Hash.from_xml(serialized_playlist).should == Hash.from_xml(xml_representation)
     end
     
@@ -33,7 +40,11 @@ describe MediaPlaylistXMLSerializer do
         <noItems reason="reason there are no media items" />
       </playlist>>|).to_xml
       
-      serialized_playlist = MediaPlaylistXMLSerializer.new.serialize(MediaPlaylist.new([], 'reason there are no media items'))
+      media_playlist = BBC::MediaPlaylist.new do |playlist|
+        playlist << OpenStruct.new(reason: 'reason there are no media items')
+      end
+    
+      serialized_playlist = BBC::MediaPlaylist::XMLSerializer.new.serialize(media_playlist)
       Hash.from_xml(serialized_playlist).should == Hash.from_xml(xml_representation)
     end
     
@@ -44,7 +55,12 @@ describe MediaPlaylistXMLSerializer do
         <noItems reason="unknown" />
       </playlist>>|).to_xml
       
-      serialized_playlist = MediaPlaylistXMLSerializer.new.serialize(MediaPlaylist.new)
+      media_playlist = BBC::MediaPlaylist.new do |playlist|
+        playlist << OpenStruct.new(reason: '')
+      end
+    
+      serialized_playlist = BBC::MediaPlaylist::XMLSerializer.new.serialize(media_playlist)
+      
       Hash.from_xml(serialized_playlist).should == Hash.from_xml(xml_representation)
     end
     

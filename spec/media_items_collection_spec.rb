@@ -1,5 +1,4 @@
-require 'ostruct'
-require 'media_items_collection'
+require_relative '../lib/media_playlist_generator'
 
 describe BBC::MediaPlaylist::MediaItemsCollection do
   

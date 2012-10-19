@@ -1,6 +1,3 @@
-require 'media_items_collection'
-require 'media_playlist_xml_serializer'
-
 module BBC
   
   class MediaPlaylist

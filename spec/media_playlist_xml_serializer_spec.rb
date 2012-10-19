@@ -1,6 +1,3 @@
-require 'ostruct'
-require 'media_playlist'
-require 'media_playlist_xml_serializer'
 require 'active_support/core_ext'
 
 describe BBC::MediaPlaylist::XMLSerializer do

@@ -1,6 +1,6 @@
 require 'yaml'
 require 'ostruct'
-require 'media_playlist'
+require 'media_playlist_generator'
 
 def programmes
   YAML.load_file(File.join(File.dirname(__FILE__), '..', 'support', 'programmes.yml'))

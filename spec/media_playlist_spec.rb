@@ -1,7 +1,3 @@
-require 'media_playlist'
-require 'nokogiri'
-require 'active_support/core_ext'
-
 describe BBC::MediaPlaylist do
     
   programme_one = OpenStruct.new({ kind: 'ident', pid: 'ident_pid' })

@@ -12,8 +12,13 @@ module BBC
     end
   
     def <<(item)
-      self.reason = item.reason unless item.reason.nil? || item.reason.empty?
-      @media_items << item unless item.reason
+      item = objectify item
+      begin
+        self.reason = item.reason unless item.reason.nil? || item.reason.empty?
+        @media_items << item unless item.reason
+      rescue NoMethodError
+        @media_items << item
+      end
     end 
   
     def media_items
@@ -29,6 +34,17 @@ module BBC
       serialize(XMLSerializer.new)
     end
     
+    private
+    
+    def objectify data
+      case data
+      when Hash then OpenStruct.new(data)
+      when OpenStruct then data
+      else
+        raise ArgumentError, "Media items should be a hash or a struct"
+      end
+    end
+      
   end
 
   class NoMediaItems < StandardError; end

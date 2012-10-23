@@ -16,24 +16,19 @@ The MediaPlayer constructor takes a block with which can you add media items to 
 ### Playlist Items    
 
 The `playlist_item` is a collection of data attributes that correspond to either a programme identifier to be used with MediaSelector or a media connection that itself can hold a collection of CDN end points.
-Currently the playlist item needs to be in the form of a Hash or a Struct.
+Currently the playlist item needs to be in the form of a Hash.
 
 #### Mediation Items
 
-Playlist items intended to represent mediation points should respond to `#pid`. This example uses Ruby's OpenStruct:
+Playlist items intended to represent mediation points should have a `:pid` key
     
-    require 'ostruct'
-    
-    playlist_item = OpenStruct.new(type: 'programme', pid: 'a-pid')
+    { type: 'programme', pid: 'a-pid' }
     
 #### Media Items
 
-Playlist items intended to represent media connections should respond to the `#connections` method which returns a collection of 'connections' that each respond to `#href`:
-
-    require 'ostruct'
+Playlist items intended to represent media connections should have a key `:connections` method which contains a collection of 'connections' that each have a key `:href`:
     
-    playlist_item = OpenStruct.new(type: 'programme', 
-                                   connections: [OpenStruct.new({ href: 'http://www.example.com/path/to/media/file' })])
+    playlist_item = { type: 'programme', connections: [{ href: 'http://www.example.com/path/to/media/file' }])
     
 ## Serialization
 

@@ -1,31 +1,38 @@
 module BBC
   
   class MediaPlaylist
+    
+    attr_writer :items
   
-    attr_accessor :reason
-    attr_writer :media_items
-  
-    def initialize(media_items_collection = MediaItemsCollection.new)
-      @reason = 'unknown'
-      @media_items = media_items_collection
+    def initialize
+      @items = []
+      @no_items = NoItems.new
       yield self if block_given?
     end
   
-    def <<(item)
-      item = objectify item
-      begin
-        self.reason = item.reason unless item.reason.nil? || item.reason.empty?
-        @media_items << item unless item.reason
-      rescue NoMethodError
-        @media_items << item
+    def <<(item_attributes)
+      item = ItemFactory.build(item_attributes)
+      case item
+      when Item
+        @items << item
+      when NoItems
+        @no_items = item
       end
     end 
-  
-    def media_items
-      raise NoMediaItems, reason if @media_items.empty?
-      @media_items
+    
+    def ==(other)
+      self.items == other.items
     end
-
+  
+    def items
+      raise NoItemsError, reason if @items.empty?
+      @items
+    end
+    
+    def reason
+      @no_items.reason
+    end
+    
     def serialize(serializer)
       serializer.serialize(self)
     end
@@ -34,19 +41,43 @@ module BBC
       serialize(XMLSerializer.new)
     end
     
-    private
-    
-    def objectify data
-      case data
-      when Hash then OpenStruct.new(data)
-      when OpenStruct then data
-      else
-        raise ArgumentError, "Media items should be a hash or a struct"
-      end
+  end
+  
+  module ItemFactory
+  
+    def self.build attributes
+      reason = attributes.fetch(:reason) { nil }
+      reason ? NoItems.new(reason) : Item.new(attributes)
     end
-      
+    
+  end
+  
+  class Item
+    
+    def initialize hash
+      @hash = hash
+    end 
+    
+    def ==(other)
+      @hash.to_hash == other.to_hash
+    end
+    
+    def attributes
+      @hash
+    end   
+    
   end
 
-  class NoMediaItems < StandardError; end
-
+  class NoItems
+    
+    attr_reader :reason
+    
+    def initialize(reason = '')
+      @reason = reason.empty? ? 'unknown' : reason
+    end
+    
+  end
+  
+  class NoItemsError < StandardError; end
+  
 end

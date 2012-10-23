@@ -14,8 +14,8 @@ module BBC
         build = xml_builder.new(:encoding => 'UTF-8') do |xml|
           xml.playlist('xmlns' => 'http://bbc.co.uk/2008/emp/playlist', 'revision' => '1') do
             begin 
-              build_item_elements xml, playlist.media_items
-            rescue NoMediaItems => e
+              build_item_elements xml, playlist.items
+            rescue NoItemsError => e
               xml.noItems(reason: e.message)
             end
           end
@@ -27,7 +27,7 @@ module BBC
   
       def build_item_elements xml, media_items
         media_items.each do |media_item|
-          media_item = media_item.marshal_dump
+          media_item = media_item.attributes
       
           def media_item.remove(key)
             hash = self.clone

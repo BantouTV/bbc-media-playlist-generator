@@ -1,27 +1,29 @@
+require 'media_playlist_generator'
+
 describe BBC::MediaPlaylist do
     
-  programme_one = OpenStruct.new({ kind: 'ident', pid: 'ident_pid' })
-  programme_two = OpenStruct.new({ kind: 'programme', pid: 'video_on_demand_pid', duration: 'duration_in_seconds', availability_class: 'ondemand' })
+  let :programme do 
+    { kind: 'programme', pid: 'video_on_demand_pid', duration: 'duration_in_seconds', availability_class: 'ondemand' } 
+  end
   
   it "holds a list of items" do
     playlist = BBC::MediaPlaylist.new do |playlist|
-      playlist << programme_one
-      playlist << programme_two
+      playlist << programme
     end
-    playlist.media_items.should == [programme_one, programme_two]
+    playlist.items.should == [programme]
   end
   
   it "holds a reason when they are no items" do
-    no_items = OpenStruct.new({ reason: 'Off air' })
+    no_items = { reason: 'Off air' }
     playlist = BBC::MediaPlaylist.new do |playlist|
       playlist << no_items
     end 
-    playlist.reason.should == no_items.reason
+    playlist.reason.should == no_items.fetch(:reason)
   end
   
   it "can be serialized via a serializer" do
     playlist = BBC::MediaPlaylist.new do |playlist|
-      playlist << programme_one
+      playlist << programme
     end
     serializer = double('serializer')
     serializer.should_receive(:serialize).with(playlist)

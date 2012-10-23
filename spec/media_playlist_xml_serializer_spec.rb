@@ -6,7 +6,7 @@ describe BBC::MediaPlaylist::XMLSerializer do
   describe "serializing a playlist with media items" do
       
     programme_one = {  kind: 'ident', pid: 'ident_pid' }  
-    programme_two = OpenStruct.new({ kind: 'programme', pid: 'video_on_demand_pid', duration: 'duration_in_seconds', availability_class: 'ondemand' })
+    programme_two = { kind: 'programme', pid: 'video_on_demand_pid', duration: 'duration_in_seconds', availability_class: 'ondemand' }
   
     
     xml_representation = Nokogiri::XML(%|<?xml version="1.0" encoding="UTF-8"?>
@@ -42,7 +42,7 @@ describe BBC::MediaPlaylist::XMLSerializer do
       </playlist>>|).to_xml
       
       media_playlist = BBC::MediaPlaylist.new do |playlist|
-        playlist << OpenStruct.new(reason: 'reason there are no media items')
+        playlist << { reason: 'reason there are no media items' }
       end
     
       serialized_playlist = BBC::MediaPlaylist::XMLSerializer.new.serialize(media_playlist)
@@ -51,18 +51,20 @@ describe BBC::MediaPlaylist::XMLSerializer do
     
     it "creates a noItems node with an reason attribute whose default value is 'noreason'" do
    
-      xml_representation = Nokogiri::XML(%|<?xml version="1.0" encoding="UTF-8"?>
-      <playlist xmlns="http://bbc.co.uk/2008/emp/playlist" revision="1">
-        <noItems reason="unknown" />
-      </playlist>>|).to_xml
+      xml_representation = 
+%|<?xml version="1.0" encoding="UTF-8"?>
+<playlist xmlns="http://bbc.co.uk/2008/emp/playlist" revision="1">
+  <noItems reason="unknown"/>
+</playlist>
+|
       
       media_playlist = BBC::MediaPlaylist.new do |playlist|
-        playlist << OpenStruct.new(reason: '')
+        playlist << { reason: '' }
       end
     
       serialized_playlist = BBC::MediaPlaylist::XMLSerializer.new.serialize(media_playlist)
+      serialized_playlist.should == xml_representation
       
-      Hash.from_xml(serialized_playlist).should == Hash.from_xml(xml_representation)
     end
     
   end

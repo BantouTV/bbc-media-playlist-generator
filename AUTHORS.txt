@@ -1,0 +1,6 @@
+AUTHORS
+
+British Broadcasting Corporation
+--------------------------------
+
+- Anthony Green   <anthony.green@bbc.co.uk>

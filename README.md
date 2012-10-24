@@ -1,6 +1,6 @@
 # Media Playout: Media Playlists
 
-A ruby library for creating XML media playlists for use in testing products based on the BBC Media Player.
+A ruby library for generating the minimal XML required for a media playlist for use in testing products based on the BBC Media Player.
 
 ## Creation
 
@@ -17,6 +17,10 @@ The MediaPlayer constructor takes a block with which can you add media items to 
 
 The `playlist_item` is a collection of data attributes that correspond to either a programme identifier to be used with MediaSelector or a media connection that itself can hold a collection of CDN end points.
 Currently the playlist item needs to be in the form of a Hash.
+
+Currently becuase of an issue with the Media Player all playlist items have to declare one of default AV types: programme, ident, advert, radioProgramme
+
+Futher information on playlists can be found on the [BBC Future Media's Confluence page](https://confluence.dev.bbc.co.uk/display/emp/Playlist)
 
 #### Mediation Items
 

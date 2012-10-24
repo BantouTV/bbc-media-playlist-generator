@@ -2,7 +2,7 @@ require 'yaml'
 require 'media_playlist_generator'
 
 def programmes
-  YAML.load_file(File.join(File.dirname(__FILE__), '..', 'support', 'programmes.yml'))
+  @programmes ||= YAML.load_file(File.join(File.dirname(__FILE__), '..', 'support', 'programmes.yml'))
 end
 
 When /^I ask for the playlist for a "(.*?)"$/ do |programme|

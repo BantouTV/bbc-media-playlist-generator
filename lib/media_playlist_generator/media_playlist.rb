@@ -41,43 +41,51 @@ module BBC
       serialize(XMLSerializer.new)
     end
     
-  end
+    module ItemFactory
   
-  module ItemFactory
-  
-    def self.build attributes
-      reason = attributes.fetch(:reason) { nil }
-      reason ? NoItems.new(reason) : Item.new(attributes)
+      def self.build attributes
+        reason = attributes.fetch(:reason) { nil }
+        reason ? NoItems.new(reason) : Item.new(attributes)
+      end
+    
     end
-    
-  end
   
-  class Item
+    class Item
     
-    def initialize hash
-      @hash = hash
-    end 
+      def initialize hash
+        @hash = hash
+      end 
     
-    def ==(other)
-      @hash.to_hash == other.to_hash
+      def ==(other)
+        @hash.to_hash == other.to_hash
+      end
+    
+      def attributes
+        @hash.reject { |key, value| (key == :pid || key == :media) }
+      end   
+      
+      def pid
+        @hash.fetch(:pid) { nil }
+      end
+      
+      def media
+        @hash.fetch(:media) { [] }
+      end
+    
     end
-    
-    def attributes
-      @hash
-    end   
-    
-  end
 
-  class NoItems
+    class NoItems
     
-    attr_reader :reason
+      attr_reader :reason
     
-    def initialize(reason = '')
-      @reason = reason.empty? ? 'unknown' : reason
+      def initialize(reason = '')
+        @reason = reason.empty? ? 'unknown' : reason
+      end
+    
     end
-    
-  end
   
-  class NoItemsError < StandardError; end
+    class NoItemsError < StandardError; end
+      
+  end
   
 end

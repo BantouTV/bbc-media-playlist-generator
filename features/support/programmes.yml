@@ -16,15 +16,27 @@ Olympics:
   :pid: the_olympics
   :kind: programme
   :media:
-    -
-     :bitrate: 1500
-     :encoding: h264
-     :type: video/mp4
-     :width: 832
-     :connections:
-       -
-         :href: http://www.bbc.co.uk/playlists/olympics.f4m
-         :protocol: http
-         :supplier: akamai_hds
-         :transferFormat: hds
-  
+  - :bitrate: 1500
+    :encoding: h264
+    :type: video/mp4
+    :width: 832
+    :connections:
+    - :href: http://www.bbc.co.uk/playlists/olympics.f4m
+      :protocol: http
+      :supplier: akamai_hds
+      :transferFormat: hds
+    - :href: http://www.bbc.co.uk/playlists/olympics.f4m
+      :protocol: http
+      :supplier: third_wave
+      :transferFormat: hls  
+  - :bitrate: 800
+    :encoding: h264
+    :type: video/mp4
+    :width: 832
+    :connections:
+    - :href: http://www.bbc.co.uk/playlists/olympics.f4m
+      :protocol: rtmp
+      :supplier: limelight
+      :transferFormat: hds
+         
+         

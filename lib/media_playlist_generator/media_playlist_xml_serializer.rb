@@ -4,7 +4,7 @@ module BBC
     
     class XMLSerializer
   
-      attr_reader :xml_builder, :media_items
+      attr_reader :xml_builder
   
       def initialize(xml_builder = Nokogiri::XML::Builder)
         @xml_builder = xml_builder
@@ -27,42 +27,27 @@ module BBC
   
       def build_item_elements xml, media_items
         media_items.each do |media_item|
-          media_item = media_item.attributes
-      
-          def media_item.remove(key)
-            hash = self.clone
-            self.delete key
-            hash.delete_if { | k, v | k != key }
-          end
-      
-          def media_item.rename_key(old, new)
-            self[new] = self.delete(old) if self[old]
-          end
-      
-          mediator_attributes = media_item.remove(:pid)
-          mediator_attributes.rename_key(:pid, :identifier) 
-          media_elements = media_item.delete(:media)
-          xml.item(media_item) do 
-            if media_elements
-              build_media_elements xml, media_elements
+          xml.item(media_item.attributes) do 
+            if !media_item.media.empty? 
+              build_media_elements xml, media_item.media
             else
-              build_mediator_element(xml, mediator_attributes)
+              build_mediator_element(xml, media_item.pid)
             end
           end
         end
       end
   
-      def build_mediator_element xml, mediator_attributes
-        xml.mediator mediator_attributes unless mediator_attributes.empty?
+      def build_mediator_element xml, pid
+        xml.mediator({identifier: pid}) unless pid.nil?
       end
   
       def build_media_elements xml, media_elements
-        media_elements ||= []
-        media_elements.each do |media_properties|
-          connections = media_properties.delete :connections
-          xml.media(media_properties) do
-            connections.each do |connection_properties|
-              xml.connection(connection_properties)
+        media_elements.each do |media_element|
+          connections = media_element.fetch :connections
+          media_attributes = media_element.reject { |key, value| key == :connections }
+          xml.media(media_attributes) do
+            connections.each do |connection|
+              xml.connection(connection)
             end
           end
         end

@@ -170,6 +170,10 @@ Feature: Playlist
       <item kind="programme" liverewind="true" live="true">
         <media bitrate="1500" encoding="h264" type="video/mp4" width="832">
           <connection href="http://www.bbc.co.uk/playlists/olympics.f4m" protocol="http" supplier="akamai_hds" transferFormat="hds"/>
+          <connection href="http://www.bbc.co.uk/playlists/olympics.f4m" protocol="http" supplier="third_wave" transferFormat="hls"/>
+        </media>
+        <media bitrate="800" encoding="h264" type="video/mp4" width="832">
+          <connection href="http://www.bbc.co.uk/playlists/olympics.f4m" protocol="rtmp" supplier="limelight" transferFormat="hds"/>
         </media>
       </item>
     </playlist>

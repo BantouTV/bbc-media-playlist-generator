@@ -10,7 +10,7 @@ Feature: Playlist
     <?xml version="1.0" encoding="UTF-8"?>
     <playlist xmlns="http://bbc.co.uk/2008/emp/playlist" revision="1">
       <item kind="programme" live="true" simulcast="true">
-        <mediator identifier="bbc_one_london_pid"/>
+        <mediator identifier="bbc_one_london_pid" name="pips"/>
       </item>
     </playlist>
     """
@@ -22,7 +22,7 @@ Feature: Playlist
     <?xml version="1.0" encoding="UTF-8"?>
     <playlist xmlns="http://bbc.co.uk/2008/emp/playlist" revision="1">
       <item kind="programme" liverewind="true" live="true" simulcast="true">
-        <mediator identifier="bbc_one_london_pid"/>
+        <mediator identifier="bbc_one_london_pid" name="pips"/>
       </item>
     </playlist>
     """
@@ -34,7 +34,7 @@ Feature: Playlist
     <?xml version="1.0" encoding="UTF-8"?>
     <playlist xmlns="http://bbc.co.uk/2008/emp/playlist" revision="1">
       <item kind="programme" duration="5700" availability_class="ondemand">
-        <mediator identifier="video_on_demand_pid"/>
+        <mediator identifier="video_on_demand_pid" name="pips"/>
       </item>
     </playlist>
     """
@@ -46,10 +46,10 @@ Feature: Playlist
     <?xml version="1.0" encoding="UTF-8"?>
     <playlist xmlns="http://bbc.co.uk/2008/emp/playlist" revision="1">
       <item kind="ident">
-        <mediator identifier="ident_pid"/>
+        <mediator identifier="ident_pid" name="pips"/>
       </item>
       <item kind="programme" duration="5700" availability_class="ondemand">
-        <mediator identifier="video_on_demand_pid"/>
+        <mediator identifier="video_on_demand_pid" name="pips"/>
       </item>
     </playlist>
     """
@@ -156,7 +156,7 @@ Feature: Playlist
         <mediator identifier="ident_pid"/>
       </item>
       <item kind="programme" duration="5700" availability_class="ondemand">
-        <mediator identifier="video_on_demand_pid"/>
+        <mediator identifier="video_on_demand_pid" name="pips"/>
       </item>
     </playlist>
     """

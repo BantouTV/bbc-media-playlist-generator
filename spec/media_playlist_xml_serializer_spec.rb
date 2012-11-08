@@ -12,10 +12,10 @@ describe BBC::MediaPlaylist::XMLSerializer do
 %|<?xml version="1.0" encoding="UTF-8"?>
 <playlist xmlns="http://bbc.co.uk/2008/emp/playlist" revision="1">
   <item kind="ident">
-    <mediator identifier="ident_pid"/>
+    <mediator identifier="ident_pid" name="pips"/>
   </item>
   <item kind="programme" duration="duration_in_seconds" availability_class="ondemand">
-    <mediator identifier="video_on_demand_pid"/>
+    <mediator identifier="video_on_demand_pid" name="pips"/>
   </item>
 </playlist>
 |

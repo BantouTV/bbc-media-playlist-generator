@@ -38,7 +38,7 @@ module BBC
       end
   
       def build_mediator_element xml, pid
-        xml.mediator({identifier: pid}) unless pid.nil?
+        xml.mediator({identifier: pid, name: 'pips'}) unless pid.nil?
       end
   
       def build_media_elements xml, media_elements

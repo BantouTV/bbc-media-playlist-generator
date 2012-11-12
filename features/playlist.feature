@@ -9,8 +9,8 @@ Feature: Playlist
     """
     <?xml version="1.0" encoding="UTF-8"?>
     <playlist xmlns="http://bbc.co.uk/2008/emp/playlist" revision="1">
-      <item kind="programme" live="true" simulcast="true">
-        <mediator identifier="bbc_one_london_pid" name="pips"/>
+      <item kind="programme" live="true" simulcast="true" group="deprecated" identifier="bbc-one-london-pid-deprecated">
+        <mediator identifier="bbc-one-london-pid" name="deprecated"/>
       </item>
     </playlist>
     """
@@ -21,8 +21,8 @@ Feature: Playlist
     """
     <?xml version="1.0" encoding="UTF-8"?>
     <playlist xmlns="http://bbc.co.uk/2008/emp/playlist" revision="1">
-      <item kind="programme" liverewind="true" live="true" simulcast="true">
-        <mediator identifier="bbc_one_london_pid" name="pips"/>
+      <item kind="programme" liverewind="true" live="true" simulcast="true" group="deprecated" identifier="bbc-one-london-pid-deprecated">
+        <mediator identifier="bbc-one-london-pid" name="deprecated"/>
       </item>
     </playlist>
     """
@@ -33,8 +33,8 @@ Feature: Playlist
     """
     <?xml version="1.0" encoding="UTF-8"?>
     <playlist xmlns="http://bbc.co.uk/2008/emp/playlist" revision="1">
-      <item kind="programme" duration="5700" availability_class="ondemand">
-        <mediator identifier="video_on_demand_pid" name="pips"/>
+      <item kind="programme" duration="5700" availability_class="ondemand" group="deprecated" identifier="video-on-demand-pid-deprecated">
+        <mediator identifier="video-on-demand-pid" name="deprecated"/>
       </item>
     </playlist>
     """
@@ -46,10 +46,10 @@ Feature: Playlist
     <?xml version="1.0" encoding="UTF-8"?>
     <playlist xmlns="http://bbc.co.uk/2008/emp/playlist" revision="1">
       <item kind="ident">
-        <mediator identifier="ident_pid" name="pips"/>
+        <mediator identifier="ident-pid" name="deprecated"/>
       </item>
-      <item kind="programme" duration="5700" availability_class="ondemand">
-        <mediator identifier="video_on_demand_pid" name="pips"/>
+      <item kind="programme" duration="5700" availability_class="ondemand" group="deprecated" identifier="video-on-demand-pid-deprecated">
+        <mediator identifier="video-on-demand-pid" name="deprecated"/>
       </item>
     </playlist>
     """
@@ -141,7 +141,7 @@ Feature: Playlist
     """
     <?xml version="1.0" encoding="UTF-8"?>
     <playlist xmlns="http://bbc.co.uk/2008/emp/playlist" revision="1">
-      <item kind="programme"></item>
+      <item kind="programme" group="deprecated" identifier="deprecated"></item>
     </playlist>
     """
     
@@ -155,8 +155,8 @@ Feature: Playlist
       <item kind="ident">
         <mediator identifier="ident_pid"/>
       </item>
-      <item kind="programme" duration="5700" availability_class="ondemand">
-        <mediator identifier="video_on_demand_pid" name="pips"/>
+      <item kind="programme" duration="5700" availability_class="ondemand" name="deprecated">
+        <mediator identifier="video-on-demand-pid"/>
       </item>
     </playlist>
     """
@@ -167,7 +167,7 @@ Feature: Playlist
     """
     <?xml version="1.0" encoding="UTF-8"?>
     <playlist xmlns="http://bbc.co.uk/2008/emp/playlist" revision="1">
-      <item kind="programme" liverewind="true" live="true">
+      <item kind="programme" liverewind="true" live="true" group="deprecated" identifier="the-olympics-deprecated">
         <media bitrate="1500" encoding="h264" type="video/mp4" width="832">
           <connection href="http://www.bbc.co.uk/playlists/olympics.f4m" protocol="http" supplier="akamai_hds" transferFormat="hds"/>
           <connection href="http://www.bbc.co.uk/playlists/olympics.f4m" protocol="http" supplier="third_wave" transferFormat="hls"/>

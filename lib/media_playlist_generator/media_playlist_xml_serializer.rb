@@ -31,14 +31,14 @@ module BBC
             if !media_item.media.empty? 
               build_media_elements xml, media_item.media
             else
-              build_mediator_element(xml, media_item.pid)
+              build_mediator_element(xml, media_item.mediator_attributes)
             end
           end
         end
       end
   
-      def build_mediator_element xml, pid
-        xml.mediator({identifier: pid, name: 'pips'}) unless pid.nil?
+      def build_mediator_element xml, attributes
+        xml.mediator(attributes) unless attributes.empty?
       end
   
       def build_media_elements xml, media_elements

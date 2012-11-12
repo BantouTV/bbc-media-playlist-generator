@@ -1,19 +1,19 @@
 BBC One London:
-  :pid: bbc_one_london_pid
+  :pid: bbc-one-london-pid
   :kind: programme
   
 Video on demand:
-  :pid: video_on_demand_pid
+  :pid: video-on-demand-pid
   :kind: programme
   :duration: 5700
   :availability_class: ondemand
   
 ident:
-  :pid: ident_pid
+  :pid: ident-pid
   :kind: ident
 
 Olympics:
-  :pid: the_olympics
+  :pid: the-olympics
   :kind: programme
   :media:
   - :bitrate: 1500

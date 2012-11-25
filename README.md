@@ -6,9 +6,9 @@ A ruby library for generating the minimal XML required for a media playlist for 
 
 The MediaPlayer constructor takes a block with which can you add media items to the collection:
 
-    require 'media_playlist'
+    require 'media_playlist_generator'
     
-    media_playlist = BBC::MediaPlayer.new do |playlist|
+    media_playlist = BBC::MediaPlaylist.new do |playlist|
       playlist << playlist_item_one 
       playlist << playlist_item_two
     end

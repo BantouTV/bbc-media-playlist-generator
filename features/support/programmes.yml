@@ -8,6 +8,19 @@ Video on demand:
   :duration: 5700
   :availability_class: ondemand
   
+Video on demand:
+  :pid: video-on-demand-pid
+  :kind: programme
+  :duration: 5700
+  :availability_class: ondemand
+  
+Video on demand with guidance warning:
+  :pid: video-on-demand-pid
+  :kind: programme
+  :duration: 5700
+  :availability_class: ondemand
+  :guidance: An example of a guidance warning
+  
 ident:
   :pid: ident-pid
   :kind: ident

@@ -27,6 +27,19 @@ Feature: Playlist
     </playlist>
     """
     
+  Scenario: An programme with guidance warning
+    When I ask for the playlist for a "Video on demand with guidance warning" 
+    Then I should get the playlist:
+    """
+    <?xml version="1.0" encoding="UTF-8"?>
+    <playlist xmlns="http://bbc.co.uk/2008/emp/playlist" revision="1">
+      <item kind="programme" duration="5700" availability_class="ondemand" group="deprecated" identifier="video-on-demand-pid-deprecated">
+        <guidance>An example of a guidance warning</guidance>
+        <mediator identifier="video-on-demand-pid" name="deprecated"/>
+      </item>
+    </playlist>
+    """
+
   Scenario: A video on demand 
     When I ask for the playlist for a "Video on demand" 
     Then I should get the playlist:

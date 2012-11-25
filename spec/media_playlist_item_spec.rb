@@ -10,7 +10,7 @@ describe BBC::MediaPlaylist::Item do
     end
   
     it "has attributes" do
-      BBC::MediaPlaylist::Item.new(programme).attributes.should == { kind: 'programme', duration: 'duration_in_seconds', availability_class: 'ondemand', group: 'deprecated', identifier: 'video-on-demand-pid-deprecated'  } 
+      BBC::MediaPlaylist::Item.new(programme).attributes.should == { kind: 'programme', pid: 'video-on-demand-pid', duration: 'duration_in_seconds', availability_class: 'ondemand', group: 'deprecated', identifier: 'video-on-demand-pid-deprecated'  } 
     end
   
     it "has a pid" do
@@ -32,7 +32,7 @@ describe BBC::MediaPlaylist::Item do
     end
     
     it "has attributes" do
-      BBC::MediaPlaylist::Item.new(programme).attributes.should == { kind: 'programme', duration: 'duration_in_seconds', availability_class: 'ondemand', group: 'deprecated', identifier: 'deprecated' }  
+      BBC::MediaPlaylist::Item.new(programme).attributes.should == { kind: 'programme', duration: 'duration_in_seconds', availability_class: 'ondemand', group: 'deprecated', identifier: 'deprecated', media: [{ bitrate: 1500, connections: [ { href: "http://www.example.org" } ] } ] }  
     end
     
     it "has media" do

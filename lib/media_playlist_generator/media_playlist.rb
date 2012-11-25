@@ -52,6 +52,7 @@ module BBC
   
     class Item
       
+      
       def initialize hash
         @hash = hash
       end 
@@ -59,14 +60,28 @@ module BBC
       def ==(other)
         @hash.to_hash == other.to_hash
       end
-    
+      
       def attributes
-        deprecated_item_identifier = [@hash.fetch(:pid) { nil }, 'deprecated'].compact.join('-')
-        deprecated_programme_attributes = { group: 'deprecated', identifier: deprecated_item_identifier }
-        attributes = @hash.reject { |key, value| (key == :pid || key == :media) }
+        @hash.merge(deprecated_programme_attributes)
+      end
+    
+      def attributes_excluding(keys_to_discard)
+        attributes = @hash.reject { |key, value|  keys_to_discard.include? key }
         attributes.merge!(deprecated_programme_attributes) if attributes.any? { |key,value| key == :kind && value == 'programme' }
         attributes
       end   
+      
+      def deprecated_item_identifier 
+        [@hash.fetch(:pid) { nil }, 'deprecated'].compact.join('-')
+      end
+      
+      def deprecated_programme_attributes
+        { group: 'deprecated', identifier: deprecated_item_identifier }
+      end
+      
+      def guidance
+        @hash.fetch(:guidance) { nil }
+      end
       
       def pid
         @hash.fetch(:pid) { nil }

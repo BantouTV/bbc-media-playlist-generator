@@ -24,17 +24,26 @@ module BBC
       end
   
       private 
+      
+      def attributes_excluded_from_item_node
+        [:pid, :guidance, :media]
+      end
   
       def build_item_elements xml, media_items
         media_items.each do |media_item|
-          xml.item(media_item.attributes) do 
+          xml.item(media_item.attributes_excluding(attributes_excluded_from_item_node)) do 
             if !media_item.media.empty? 
               build_media_elements xml, media_item.media
             else
+              build_guidance xml, media_item.guidance
               build_mediator_element(xml, media_item.mediator_attributes)
             end
           end
         end
+      end
+      
+      def build_guidance xml, guidance
+        xml.guidance(guidance) if guidance
       end
   
       def build_mediator_element xml, attributes

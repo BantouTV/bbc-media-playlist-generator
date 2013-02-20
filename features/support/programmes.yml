@@ -8,11 +8,11 @@ Video on demand:
   :duration: 5700
   :availability_class: ondemand
   
-Video on demand:
-  :pid: video-on-demand-pid
-  :kind: programme
+Audio on demand:
+  :pid: audio-on-demand-pid
+  :kind: radioProgramme
   :duration: 5700
-  :availability_class: ondemand
+  :availability_class: ondemand  
   
 Video on demand with guidance warning:
   :pid: video-on-demand-pid
@@ -51,5 +51,3 @@ Olympics:
       :protocol: rtmp
       :supplier: limelight
       :transferFormat: hds
-         
-         

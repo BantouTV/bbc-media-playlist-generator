@@ -52,6 +52,7 @@ module BBC
   
     class Item
       
+      attr_accessor :kind
       
       def initialize hash
         @hash = hash
@@ -64,10 +65,14 @@ module BBC
       def attributes
         @hash.merge(deprecated_programme_attributes)
       end
+      
+      def kind
+        @hash.fetch :kind
+      end
     
       def attributes_excluding(keys_to_discard)
         attributes = @hash.reject { |key, value|  keys_to_discard.include? key }
-        attributes.merge!(deprecated_programme_attributes) if attributes.any? { |key,value| key == :kind && value == 'programme' }
+        attributes.merge!(deprecated_programme_attributes_for self)
         attributes
       end   
       
@@ -96,7 +101,14 @@ module BBC
         attributes.merge!({ identifier: pid }).merge!(deprecated_mediator_attributes) unless pid.nil?
         attributes
       end
-
+      
+      def deprecated_programme_attributes_for media
+        { ident: {},
+          advert: {},
+          programme:  { group: 'deprecated', identifier: deprecated_item_identifier },
+          radioProgramme:  { group: 'deprecated', identifier: deprecated_item_identifier }
+          }.fetch media.kind.to_sym
+      end
     
     end
 

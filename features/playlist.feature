@@ -51,6 +51,18 @@ Feature: Playlist
       </item>
     </playlist>
     """
+
+  Scenario: A audio on demand 
+    When I ask for the playlist for a "Audio on demand" 
+    Then I should get the playlist:
+    """
+    <?xml version="1.0" encoding="UTF-8"?>
+    <playlist xmlns="http://bbc.co.uk/2008/emp/playlist" revision="1">
+      <item kind="radioProgramme" duration="5700" availability_class="ondemand" group="deprecated" identifier="audio-on-demand-pid-deprecated">
+        <mediator identifier="audio-on-demand-pid" name="deprecated"/>
+      </item>
+    </playlist>
+    """
     
   Scenario: An ident and a video on demand 
     When I ask for the playlist with a "ident" and "Video on demand" 

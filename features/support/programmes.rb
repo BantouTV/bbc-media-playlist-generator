@@ -1,0 +1,74 @@
+{ 
+  'BBC One London' => {
+    pid: 'bbc-one-london-pid',
+    kind: 'programme'
+  },
+  
+  'Video on demand' => {
+    pid: 'video-on-demand-pid',
+    kind: 'programme',
+    duration: '5700',
+    availability_class: 'ondemand'
+  },
+  
+  'Audio on demand' => {
+    pid: 'audio-on-demand-pid',
+    kind: 'programme',
+    duration: '5700',
+    availability_class: 'ondemand'
+  },
+   
+  'Video on demand with guidance warning' => {
+    pid: 'video-on-demand-pid',
+    kind: 'programme',
+    duration: '5700',
+    availability_class: 'ondemand',
+    guidance: 'An example of a guidance warning'
+  },
+   
+  'Ident' => {
+    pid: 'ident-pid',
+    kind: 'ident'
+  },
+   
+  'Olympics' => {
+    pid: 'the-olympics',
+    kind: 'programme',
+    media: [
+      {
+        bitrate: 1500,
+        encoding: 'h264',
+        type: 'video/mp4',
+        width: 832,
+        connections: [
+          {
+            href: 'http://www.bbc.co.uk/playlists/olympics.f4m',
+            protocol: 'http',
+            supplier: 'akamai_hds',
+            transferFormat: 'hds'
+          },
+          {
+            href: 'http://www.bbc.co.uk/playlists/olympics.f4m',
+            protocol: 'http',
+            supplier: 'third_wave',
+            transferFormat: 'hls'
+          }
+        ],
+      },
+      {
+        bitrate: 800,
+        encoding: 'h264',
+        type: 'video/mp4',
+        width: 832,
+        connections: [
+          { 
+            href: 'http://www.bbc.co.uk/playlists/olympics.f4m',
+            protocol: 'rtmp',
+            supplier: 'limelight',
+            transferFormat: 'hds'
+          }
+        ]
+      }
+    ]
+  }
+}

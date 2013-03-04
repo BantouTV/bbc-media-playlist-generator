@@ -11,12 +11,12 @@ When /^I ask for the playlist for a "(.*?)"$/ do |programme|
 end
 
 When /^I ask for the playlist for "(.*?)" live simulcast$/ do |programme|
-  programme = programmes.fetch(programme).merge({ live: 'true', simulcast: 'true' })
+  programme = programmes.fetch(programme).merge({ live: true, simulcast: true })
   @playlist = BBC::MediaPlaylist.new { |playlist| playlist << programme }.to_xml
 end
 
 When /^I ask for the playlist for "(.*?)" live rewind$/ do |programme|
-  programme = programmes.fetch(programme).merge({ live: 'true', liverewind: 'true' })
+  programme = programmes.fetch(programme).merge({ live: true, liverewind: true })
   @playlist = BBC::MediaPlaylist.new { |playlist| playlist << programme }.to_xml
 end
 

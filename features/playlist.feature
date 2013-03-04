@@ -21,7 +21,7 @@ Feature: Playlist
     """
     <?xml version="1.0" encoding="UTF-8"?>
     <playlist xmlns="http://bbc.co.uk/2008/emp/playlist" revision="1">
-      <item kind="programme" liverewind="true" live="true" simulcast="true" group="deprecated" identifier="bbc-one-london-pid-deprecated">
+      <item kind="programme" live="true" simulcast="true" liverewind="true" group="deprecated" identifier="bbc-one-london-pid-deprecated">
         <mediator identifier="bbc-one-london-pid" name="deprecated"/>
       </item>
     </playlist>
@@ -85,7 +85,7 @@ Feature: Playlist
     """
     <?xml version="1.0" encoding="UTF-8"?>
     <playlist xmlns="http://bbc.co.uk/2008/emp/playlist" revision="1">
-      <noItems reason="preAvailability" />
+      <noItems reason="preAvailability"/>
     </playlist>
     """
   
@@ -95,7 +95,7 @@ Feature: Playlist
     """
     <?xml version="1.0" encoding="UTF-8"?>
     <playlist xmlns="http://bbc.co.uk/2008/emp/playlist" revision="1">
-      <noItems reason="postLiveAvailability" />
+      <noItems reason="postLiveAvailability"/>
     </playlist>
     """
   
@@ -105,7 +105,7 @@ Feature: Playlist
     """
     <?xml version="1.0" encoding="UTF-8"?>
     <playlist xmlns="http://bbc.co.uk/2008/emp/playlist" revision="1">
-      <noItems reason="postAvailability" />
+      <noItems reason="postAvailability"/>
     </playlist>
     """
     
@@ -115,7 +115,7 @@ Feature: Playlist
     """
     <?xml version="1.0" encoding="UTF-8"?>
     <playlist xmlns="http://bbc.co.uk/2008/emp/playlist" revision="1">
-      <noItems reason="offAir" />
+      <noItems reason="offAir"/>
     </playlist>
     """    
   
@@ -125,7 +125,7 @@ Feature: Playlist
     """
     <?xml version="1.0" encoding="UTF-8"?>
     <playlist xmlns="http://bbc.co.uk/2008/emp/playlist" revision="1">
-      <noItems reason="unknown" />
+      <noItems reason="unknown"/>
     </playlist>
     """
     
@@ -135,7 +135,7 @@ Feature: Playlist
     """
     <?xml version="1.0" encoding="UTF-8"?>
     <playlist xmlns="http://bbc.co.uk/2008/emp/playlist" revision="1">
-      <noItems reason="noPlayableItems" />
+      <noItems reason="noPlayableItems"/>
     </playlist>
     """
   
@@ -145,7 +145,7 @@ Feature: Playlist
     """
     <?xml version="1.0" encoding="UTF-8"?>
     <playlist xmlns="http://bbc.co.uk/2008/emp/playlist" revision="1">
-      <noItems reason="regionRestriction" />
+      <noItems reason="regionRestriction"/>
     </playlist>
     """
 
@@ -155,7 +155,7 @@ Feature: Playlist
     """
     <?xml version="1.0" encoding="UTF-8"?>
     <playlist xmlns="http://bbc.co.uk/2008/emp/playlist" revision="1">
-      <noItems reason="noMedia" />
+      <noItems reason="noMedia"/>
     </playlist>
 
     """
@@ -166,7 +166,7 @@ Feature: Playlist
     """
     <?xml version="1.0" encoding="UTF-8"?>
     <playlist xmlns="http://bbc.co.uk/2008/emp/playlist" revision="1">
-      <item kind="programme" group="deprecated" identifier="deprecated"></item>
+      <item kind="programme" group="deprecated" identifier="deprecated"/>
     </playlist>
     """
     
@@ -192,7 +192,7 @@ Feature: Playlist
     """
     <?xml version="1.0" encoding="UTF-8"?>
     <playlist xmlns="http://bbc.co.uk/2008/emp/playlist" revision="1">
-      <item kind="programme" liverewind="true" live="true" group="deprecated" identifier="the-olympics-deprecated">
+      <item kind="programme" live="true" liverewind="true" group="deprecated" identifier="the-olympics-deprecated">
         <media bitrate="1500" encoding="h264" type="video/mp4" width="832">
           <connection href="http://www.bbc.co.uk/playlists/olympics.f4m" protocol="http" supplier="akamai_hds" transferFormat="hds"/>
           <connection href="http://www.bbc.co.uk/playlists/olympics.f4m" protocol="http" supplier="third_wave" transferFormat="hls"/>

@@ -16,7 +16,7 @@ The MediaPlayer constructor takes a block with which can you add media items to 
 ### Playlist Items    
 
 The `playlist_item` is a collection of data attributes that correspond to either a programme identifier to be used with MediaSelector or a media connection that itself can hold a collection of CDN end points.
-Currently the playlist item needs to be in the form of a Hash.
+Currently the playlist item can be in the form of a Hash or an OpenStruct.
 
 Currently becuase of an issue with the Media Player all playlist items have to declare one of default AV types: programme, ident, advert, radioProgramme
 

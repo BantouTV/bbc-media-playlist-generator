@@ -1,4 +1,3 @@
-require 'active_support/core_ext'
 require 'media_playlist_generator'
 
 describe BBC::MediaPlaylist::XMLSerializer do

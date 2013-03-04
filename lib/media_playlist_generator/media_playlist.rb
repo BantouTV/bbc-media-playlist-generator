@@ -44,6 +44,7 @@ module BBC
     module ItemFactory
   
       def self.build attributes
+        attributes = attributes.marshal_dump if attributes.is_a? OpenStruct
         reason = attributes.fetch(:reason) { nil }
         reason ? NoItems.new(reason) : Item.new(attributes)
       end

@@ -11,12 +11,12 @@ When /^I ask for the playlist for a "(.*?)"$/ do |programme|
 end
 
 When /^I ask for the playlist for "(.*?)" live simulcast$/ do |programme|
-  programme = programmes.fetch(programme).merge({ live: 'true', simulcast: 'true' })
+  programme = programmes.fetch(programme).merge({ live: true, simulcast: true })
   @playlist = BBC::MediaPlaylist.new { |playlist| playlist << programme }.to_xml
 end
 
 When /^I ask for the playlist for "(.*?)" live rewind$/ do |programme|
-  programme = programmes.fetch(programme).merge({ live: 'true', liverewind: 'true' })
+  programme = programmes.fetch(programme).merge({ live: true, liverewind: true })
   @playlist = BBC::MediaPlaylist.new { |playlist| playlist << programme }.to_xml
 end
 
@@ -79,14 +79,9 @@ When /^the playlist is malformed$/ do
 end
 
 Then /^I should get the playlist:$/ do |playlist|
-  Hash.from_xml(@playlist).should == Hash.from_xml(playlist)
+  @playlist.should represent_the_same_xml_as playlist
 end
 
 Then /^I should not get the playlist:$/ do |playlist|
-  begin
-    expected_playlist = Hash.from_xml(@playlist)
-  rescue REXML::ParseException
-    expected_playlist = Hash.new
-  end
-  expected_playlist.should_not == Hash.from_xml(playlist)
+  @playlist.should_not represent_the_same_xml_as playlist
 end
